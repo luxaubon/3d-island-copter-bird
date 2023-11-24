@@ -7,7 +7,7 @@ import Island  from '../models/Island'
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
-
+import WarPlane from "../models/WarPlane";
 import sakura from "../assets/sakura.mp3";
 
 const Home = () => {
@@ -100,6 +100,13 @@ const Home = () => {
               rotation={[0, 20.1, 0]}
               scale={biplaneScale}
              />
+
+             {/* <WarPlane 
+             isRotating={isRotating}
+             position={biplanePosition}
+             rotation={[0, 20.1, 0]}
+             scale={biplaneScale}
+             /> */}
 
         </Suspense>
       </Canvas>
