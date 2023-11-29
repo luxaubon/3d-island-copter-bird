@@ -21,3 +21,12 @@ https://sketchfab.com/
 
 See 3D 
 https://gltf.pmnd.rs/
+
+EmailJS
+npm i @emailjs/browser
+
+
+
+https://www.npmjs.com/package/react-vertical-timeline-component
+npm i react-vertical-timeline-component
+
