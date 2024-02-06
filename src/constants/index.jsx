@@ -223,6 +223,13 @@ export const projects = [
     {
         iconUrl: react,
         theme: 'btn-back-yellow',
+        name: 'summarize-articles-with-open-ai-gpt-4',
+        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
+        link: 'https://summarize-articles-with-open-ai-gpt-4-pi.vercel.app/',
+    },
+    {
+        iconUrl: react,
+        theme: 'btn-back-yellow',
         name: 'Project Test Next js Shop Amazon',
         description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
         link: 'https://shop-amazon-copy-url.vercel.app/',
