@@ -259,6 +259,19 @@ export const projects = [
         name: 'Project Test Next js Clone Netflix 2',
         description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
         link: 'https://clone-netflix-dusky.vercel.app',
+    },{
+        iconUrl: laravel,
+        theme: 'btn-back-green',
+        name: 'asktools',
+        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
+        link: 'https://asktools.co.th/',
+    },
+    {
+        iconUrl: laravel,
+        theme: 'btn-back-green',
+        name: 'ถุงขยะหนาพิเศษ',
+        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
+        link: 'https://xn--22cj8bozw8bio3cyaz7b4h.com/',
     },
     {
         iconUrl: laravel,
@@ -286,13 +299,7 @@ export const projects = [
         description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
         link: 'www.jiffy-promotion.com',
     },
-    {
-        iconUrl: laravel,
-        theme: 'btn-back-green',
-        name: 'asktools',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://asktools.co.th/',
-    },
+    
     {
         iconUrl: laravel,
         theme: 'btn-back-green',

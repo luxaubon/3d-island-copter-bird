@@ -1,135 +1,67 @@
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-import Loader from '../components/Loader'
-import HomeInfo from '../components/HomeInfo'
+import CTA from "../components/CTA";
+import { projects } from "../constants";
+import { arrow } from "../assets/icons";
 
-import { soundoff, soundon } from "../assets/icons";
-
-import Island  from '../models/Island'
-import Sky from "../models/Sky";
-import Bird from "../models/Bird";
-import Plane from "../models/Plane";
-import WarPlane from "../models/WarPlane";
-import sakura from "../assets/sakura.mp3";
-
-const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
-
-  const [currentStage, setCurrentStage] = useState(1);
-  const [isRotating, setIsRotating] = useState(false);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-
-  useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play();
-    }
-
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
-
-  const adjustBiplaneForScreenSize = () => {
-    let screenScale, screenPosition;
-
-    // If screen width is less than 768px, adjust the scale and position
-    if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
-    }
-
-    return [screenScale, screenPosition];
-  };
-  const adjustIslandForScreenSize = () => {
-    let screenScale, screenPosition;
-
-    if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
-      screenPosition = [0, -6.5, -43.4];
-    } else {
-      screenScale = [1, 1, 1];
-      screenPosition = [0, -6.5, -43.4];
-    }
-
-    return [screenScale, screenPosition];
-  };
-
-  const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
-  const [islandScale, islandPosition] = adjustIslandForScreenSize();
-
-
+const Projects = () => {
   return (
-    <section className='w-full h-screen relative'>
+    <section className='max-container'>
+      <h1 className='head-text'>
+        {" "}
+        <span className='blue-gradient_text drop-shadow font-semibold'>
+          โปรเจคของฉัน
+        </span>
+      </h1>
 
-      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-        {currentStage && <HomeInfo currentStage={currentStage} />}
-      </div>
-       <Canvas
-        className={`w-full h-screen bg-transparent ${isRotating ? "cursor-grabbing" : "cursor-grab"}}`}
-        camera={{ near: 0.1, far: 1000 }}
-      >
-        <Suspense fallback={<Loader />}>
-        <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 5, 10]} intensity={2} />
-          <spotLight
-            position={[0, 50, 10]}
-            angle={0.15}
-            penumbra={1}
-            intensity={2}
-          />
-          <hemisphereLight
-            skyColor='#b1e1ff'
-            groundColor='#000000'
-            intensity={1}
-          />
+      <p className='text-slate-500 mt-2 leading-relaxed'>
+        นี่คือโปรเจคที่ฉันได้ทำขึ้นมาในช่วงเวลาที่ผ่านม
+      </p>
 
-          <Bird />
-          <Sky  isRotating={isRotating} />
+      <div className='flex flex-wrap my-20 gap-16'>
+        {projects.map((project) => (
+          <div className='lg:w-[400px] w-full' key={project.name}>
+            <div className='block-container w-12 h-12'>
+              <div className={`btn-back rounded-xl ${project.theme}`} />
+              <div className='btn-front rounded-xl flex justify-center items-center'>
+                <img
+                  src={project.iconUrl}
+                  alt='threads'
+                  className='w-1/2 h-1/2 object-contain'
+                />
+              </div>
+            </div>
 
-            <Island 
-             isRotating={isRotating}
-             setIsRotating={setIsRotating}
-             setCurrentStage={setCurrentStage}
-             position={islandPosition}
-             rotation={[0.1, 4.7077, 0]}
-             scale={islandScale}
-             />
-             <Plane 
-              isRotating={isRotating}
-              position={biplanePosition}
-              rotation={[0, 20.1, 0]}
-              scale={biplaneScale}
-             />
-
-             {/* <WarPlane 
-             isRotating={isRotating}
-             position={biplanePosition}
-             rotation={[0, 20.1, 0]}
-             scale={biplaneScale}
-             /> */}
-
-        </Suspense>
-      </Canvas>
-
-      <div className='absolute bottom-2 left-2'>
-        <img
-          src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-10 h-10 cursor-pointer object-contain'
-        />
+            <div className='mt-5 flex flex-col'>
+              <h4 className='text-2xl font-poppins font-semibold'>
+                {project.name}
+              </h4>
+              {/* <p className='mt-2 text-slate-500'>{project.description}</p> */}
+              <div className='mt-5 flex items-center gap-2 font-poppins'>
+                <Link
+                  to={project.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='font-semibold text-blue-600'
+                >
+                  ดูโปรเจค
+                </Link>
+                <img
+                  src={arrow}
+                  alt='arrow'
+                  className='w-4 h-4 object-contain'
+                />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
+      <hr className='border-slate-200' />
 
+      <CTA />
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Projects;
